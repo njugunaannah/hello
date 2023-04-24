@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <fcntl.h>
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -60,6 +61,13 @@ typedef struct sep_list_s
 	char separator;
 	struct sep_list_s *next;
 } sep_list;
+
+typedef struct info_t 
+{
+	int readfd;
+	/**other members */
+} info_t;
+
 
 /**
  * struct line_list_s - single linked list

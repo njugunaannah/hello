@@ -1,15 +1,15 @@
 #include "main.h"
+#include <fcntl.h>
 
 /**
  * interactive - performs interactive operations
- * @ino: pointer to info_t struct
+ * @info: pointer to info_t struct
  *
  * Return: integer value
  */
 
 int interactive(info_t *info)
 {
-	info_t *info;
 	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
