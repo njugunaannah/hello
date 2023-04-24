@@ -72,7 +72,7 @@ const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
 write(STDERR_FILENO, CLEAR_SCREEN_ANSI, 12);
 first_time = 0;
 }
-printf("# ");
+printf("$ ");
 }
 
 /**
