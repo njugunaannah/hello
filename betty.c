@@ -1,13 +1,13 @@
 #include <stdio.h>
 
 /**
- * main - entry point
- *
- * Return: always zero
- */
+* main - entry point
+*
+* Return: always zero
+*/
 
 int main(void)
 {
-	printf("Hello World!\n");
-	return (0);
+printf("Hello World!\n");
+return (0);
 }

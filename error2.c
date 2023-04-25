@@ -23,13 +23,13 @@ return (error);
 }
 
 /**
- * error_path_126 - error message for path and failure denied permission.
- * @counter: counter
- * @program_name: program name
- * @arg: arg
- *
- * Return: The error string.
- */
+* error_path_126 - error message for path and failure denied permission.
+* @counter: counter
+* @program_name: program name
+* @arg: arg
+*
+* Return: The error string.
+*/
 
 char *error_path_126(int counter, char *program_name, char *arg)
 {
