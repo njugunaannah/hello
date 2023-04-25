@@ -70,7 +70,6 @@ if (!pathstr)
 {
 return (NULL);
 }
-
 if (_strlen(cmd) > 2 && starts_with(cmd, "./"))
 {
 if (is_cmd(info, cmd))
@@ -78,13 +77,11 @@ if (is_cmd(info, cmd))
 return (cmd);
 }
 }
-
 for (i = 0, curr_pos = 0; ; i++)
 {
 if (!pathstr[i] || pathstr[i] == ':')
 {
 path = dup_chars(pathstr, curr_pos, i);
-
 if (!*path)
 {
 _strcat(path, cmd);
@@ -94,21 +91,16 @@ else
 _strcat(path, "/");
 _strcat(path, cmd);
 }
-
 if (is_cmd(info, path))
 {
 return (path);
 }
-
 if (!pathstr[i])
 {
 break;
 }
-
 curr_pos = i + 1;
 }
 }
-
 return (NULL);
 }
-

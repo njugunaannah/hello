@@ -82,7 +82,7 @@ return (i);
 * node_starts_with - Searches for the first node that starts with a prefix and
 * contains a specific character.
 * @node: A node of the linked list.
-* @prefix: A string of characters to match at the start of the node's string data.
+* @prefix: Character string to match the start of the node's string data.
 * @c: A character to match inside the node's string data.
 * Return: The first node that matches both the prefix and character or NULL if
 * no node matches.
@@ -102,10 +102,10 @@ return (NULL);
 }
 
 /**
-* get_node_index - Returns the index of a node in a linked list.
+* get_node_index - Returns the node's index in a linked list.
 * @head: A pointer to the head of the linked list.
 * @node: A pointer to the node whose index is to be found.
-* Return: The index of the node in the linked list or -1 if the node is not found
+* Return: Index of the node in the linked list or -1 if the node is not found
 */
 ssize_t get_node_index(list_t *head, list_t *node)
 {

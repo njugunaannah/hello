@@ -33,7 +33,7 @@ char *ret;
 
 if (str == NULL)
 return (NULL);
-for (const char* c = str; *c != '\0'; c++)
+for (const char *c = str; *c != '\0'; c++)
 length++;
 ret = malloc(sizeof(char) * (length + 1));
 if (!ret)
