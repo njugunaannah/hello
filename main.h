@@ -1,6 +1,7 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -49,6 +50,21 @@ typedef struct liststr
 	char *str;
 	struct liststr *next;
 } list_t;
+
+typedef struct data_shell {
+	char **argv;
+	char **envp;
+	char *input_file;
+	char *output_file;
+	int num_args;
+	int num_env;
+	int append_output;
+	int args;
+	char counter;
+	char **av;
+
+} data_shell;
+
 
 /**
  *struct passinfo - contains pseudo-arguements to pass into a function,
@@ -231,5 +247,8 @@ void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);
+
+/* main.c */
+int main(int ac, char **av);
 
 #endif
