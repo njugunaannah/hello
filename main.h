@@ -251,4 +251,18 @@ int replace_string(char **, char *);
 /* main.c */
 int main(int ac, char **av);
 
+/* shell_loop.c */
+int hsh(info_t *info, char **av);
+int find_builtin(info_t *info);
+void find_cmd(info_t *info);
+char *find_path(info_t *info, char *path_str, char *cmd);
+char **tokenize_path(char *path);
+
+/* shell_loop1.c */
+int path_len(char *path);
+void free_arr(char **arr);
+int is_delim(char c, char *delim);
+int is_cmd(info_t *info, char *cmd);
+
+
 #endif
