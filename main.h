@@ -37,8 +37,7 @@
 #define HIST_MAX	4096
 
 extern char **environ;
-void _eputs(const char *str);
-void _eputchar(int c);
+
 
 
 /**
