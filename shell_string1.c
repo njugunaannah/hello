@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
 * _strcpy - copies the string pointed to by src to the buffer
 *           pointed to by dest.
@@ -9,9 +11,11 @@
 
 char *_strcpy(char *dest, char *src)
 {
+	int i;
+
 if (dest == src || src == 0)
 return (dest);
-for (int i = 0; src[i] != '\0'; i++)
+for (i = 0; src[i] != '\0'; i++)
 dest[i] = src[i];
 return (dest);
 }
@@ -30,15 +34,17 @@ char *_strdup(const char *str)
 {
 int length = 0;
 char *ret;
+int i;
+const char *c;
 
 if (str == NULL)
 return (NULL);
-for (const char *c = str; *c != '\0'; c++)
+for (c = str; *c != '\0'; c++)
 length++;
 ret = malloc(sizeof(char) * (length + 1));
 if (!ret)
 return (NULL);
-for (int i = 0; i <= length; i++)
+for (i = 0; i <= length; i++)
 ret[i] = str[i];
 return (ret);
 }
@@ -52,9 +58,11 @@ return (ret);
 */
 void _puts(char *str)
 {
+	int i;
+
 if (!str)
 return;
-for (int i = 0; str[i] != '\0'; i++)
+for (i = 0; str[i] != '\0'; i++)
 _putchar(str[i]);
 }
 

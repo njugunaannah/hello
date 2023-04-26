@@ -46,13 +46,12 @@ char *_strncat(char *dest, char *src, int n)
 {
 	int i = 0;
 	char *s = dest;
-<<<<<<< HEAD
+	int j = 0;
 
-	for (dest[i] != '\0' i++);
-=======
-	int j;
+	for (; dest[i] != '\0'; i++);
+
 	for (i = 0; dest[i] != '\0'; i++)
->>>>>>> 4ba0c015b7e7c79456ffdd652e38651a92bcdf01
+
 	{
 		/* empty body, loop used to find end of dest string */
 	}
