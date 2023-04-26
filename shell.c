@@ -77,16 +77,18 @@ printf("$ ");
 }
 
 /**
- * main - Entry point for the program
+ * main - entry point
  *
- * Return: 0 on success
+ * Return: Always 0
  */
-
 int main(void)
 {
-/*char cmd[100];*/
+
+/* char cmd[100];*/
+
 char command[100];
 char *parameters[20];
+
 /*char *envp[] = { (char *) "PATH=C:\\Windows\\System32", NULL };*/
 
 while (1)
@@ -110,4 +112,3 @@ exit(1);
 }
 return (0);
 }
-

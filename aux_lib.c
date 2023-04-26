@@ -66,10 +66,12 @@ return (buffer);
 }
 
 /**
-* _atoi - converts a string to an integer.
-* @s: input string.
-* Return: integer.
-*/
+ * _atoi - Converts a string to an integer.
+ * @s: The string to be converted.
+ *
+ * Return: The converted integer.
+ */
+
 int _atoi(char *s)
 {
 unsigned int count = 0, size = 0, oi = 0, pn = 1, m = 1, i;

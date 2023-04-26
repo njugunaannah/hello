@@ -38,8 +38,6 @@
 
 extern char **environ;
 
-
-
 /**
  * struct liststr - singly linked list
  * @num: the number field
@@ -238,7 +236,7 @@ int replace_vars(info_t *);
 int replace_string(char **, char *);
 
 /* main.c */
-int main(int ac, char **av);
+/*int main(int ac, char **av);*/
 
 /* shell_loop.c */
 int hsh(info_t *info, char **av);

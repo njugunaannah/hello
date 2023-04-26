@@ -68,4 +68,3 @@ _putfd(STDOUT_FILENO, "Hello, stdout!");
 _putsfd(STDOUT_FILENO, "Hello, stdout again!");
 return (0);
 }
-
