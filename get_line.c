@@ -108,6 +108,7 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
 {
 	ssize_t r = 0;
 	size_t j = 0;
+
 	if (*i)
 	return (0);
 
