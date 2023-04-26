@@ -243,6 +243,7 @@ int main(int ac, char **av);
 int hsh(info_t *info, char **av);
 int find_builtin(info_t *info);
 void find_cmd(info_t *info);
+void fork_cmd(info_t *info);
 char *find_path(info_t *info, char *path_str, char *cmd);
 char **tokenize_path(char *path);
 
