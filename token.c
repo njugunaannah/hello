@@ -61,29 +61,31 @@ return (s);
 
 char **strtow2(char *str, char d)
 {
+	int i;
+        char **s;
+        int numwords = 1;
+	char *token = strtok(str, &d);
+	int j;
+
 	if (!str || !*str)
 		return (NULL);
-
-	int i;
-	int numwords = 1;
 
 	for (i = 0; str[i]; i++)
 	if (str[i] == d)
 		numwords++;
 
-	char **s = malloc((numwords + 1) * sizeof(char *));
+	s = malloc((numwords + 1) * sizeof(char *));
 
 	if (!s)
 		return (NULL);
 
-	char *token = strtok(str, &d);
 
 	for (i = 0; token; i++)
 	{
 	s[i] = strdup(token);
 	if (!s[i])
 	{
-	for (int j = 0; j < i; j++)
+	for (j = 0; j < i; j++)
 		free(s[j]);
 	free(s);
 	return (NULL);
