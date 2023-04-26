@@ -44,10 +44,10 @@ char *_strncpy(char *dest, char *src, int n)
 
 char *_strncat(char *dest, char *src, int n)
 {
-	int i;
+	int i = 0;
 	char *s = dest;
 
-	for (i = 0; dest[i] != '\0'; i++)
+	for (dest[i] != '\0' i++);
 	{
 		/* empty body, loop used to find end of dest string */
 	}

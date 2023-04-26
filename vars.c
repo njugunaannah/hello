@@ -117,7 +117,7 @@ continue;
 if (!_strcmp(info->argv[i], "$$"))
 {
 replace_string(&(info->argv[i]),
-_strdup(convert_number(info->pid, 10, 0)));
+_strdup(convert_number(getpid(), 10, 0)));
 continue;
 }
 node = node_starts_with(info->env, info->argv[i] + 1, '=');
@@ -145,7 +145,7 @@ if (replace_vars(info) == 0)
 return (0);
 if (_strcmp(info->argv[0], "exit") == 0)
 exit_shell(info, NULL);
-
+return (0);
 if (_strcmp(info->argv[0], "cd") == 0)
 return (change_dir(info));
 
