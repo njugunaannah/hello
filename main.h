@@ -52,19 +52,6 @@ typedef struct liststr
 	struct liststr *next;
 } list_t;
 
-typedef struct data_shell {
-	char **argv;
-	char **envp;
-	char *input_file;
-	char *output_file;
-	int num_args;
-	int num_env;
-	int append_output;
-	int args;
-	char counter;
-	char **av;
-
-} data_shell;
 
 
 /**
@@ -184,11 +171,11 @@ int _isalpha(int);
 int _atoi(char *);
 
 /* _errors1.c */
-int _erratoi(char *);
-void print_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+int _erratoi(char *s);
+void print_error(info_t *info, char *estr);
+int print_d(int input, int fd);
+char *convert_number(long int num, int base, int flags);
+void remove_comments(char *buff);
 
 /* built_in.c */
 int _myexit(info_t *);

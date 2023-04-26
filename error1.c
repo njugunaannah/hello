@@ -1,175 +1,154 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /**
-* strcat_cd - function that concatenates the message for cd error
-*
-* @datash: data relevant (directory)
-* @msg: message to print
-* @error: output message
-* @ver_str: counter lines
-* Return: error message
-*/
-char *strcat_cd(data_shell *datash, char *msg, char *error, char *ver_str)
+ * _erratoi - Converts a string to an integer
+ *
+ * @s: Pointer to the string to convert
+ *
+ * Return: The integer value of the string
+ */
+
+int _erratoi(char *s)
 {
-char *illegal_flag;
-int size = strlen(datash->av[0]) + strlen(msg) + strlen(datash->args[0])
-	+ strlen(ver_str) + strlen(datash->args[1]) + 6;
+	int i = 0;
+	unsigned long int result = 0;
 
-error = (char *)malloc(sizeof(char) * size);
-if (!error)
-return (NULL);
-
-snprintf(error, size, "%s: %s: %s%s", datash->av[0], ver_str, datash->args[0],
-		msg);
-
-if (datash->args[1][0] == '-')
-{
-illegal_flag = (char *)malloc(sizeof(char) * 4);
-if (!illegal_flag)
-{
-free(error);
-return (NULL);
-}
-snprintf(illegal_flag, 4, "-%c", datash->args[1][1]);
-strcat(error, illegal_flag);
-free(illegal_flag);
-}
-else
-strcat(error, datash->args[1]);
-
-strcat(error, "\n");
-return (error);
+	if (*s == '+')
+		s++;  /* TODO: why does this make main return 255? */
+	for (i = 0;  s[i] != '\0'; i++)
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			result *= 10;
+			result += (s[i] - '0');
+			if (result > INT_MAX)
+				return (-1);
+		}
+		else
+			return (-1);
+	}
+	return (result);
 }
 
 /**
-* error_get_cd - error message for cd command in get_cd
-* @datash: data relevant (directory)
-* Return: Error message
-*/
+ * print_error - Prints an error message.
+ * @info: Pointer to the info_t struct.
+ * @estr: String containing the error message to be printed.
+ *
+ * Return: void.
+ */
 
-char *error_get_cd(data_shell *datash)
+void print_error(info_t *info, char *estr)
 {
-char *msg, *error, *ver_str;
-int len_id, size;
-
-ver_str = aux_itoa(datash->counter);
-
-if (datash->args[1][0] == '-')
-{
-msg = ": Illegal option ";
-len_id = 2;
-}
-else
-{
-msg = ": can't cd to ";
-len_id = strlen(datash->args[1]);
-}
-
-size = strlen(datash->av[0]) + strlen(msg) + strlen(datash->args[0])
-	+ strlen(ver_str) + len_id + 5;
-
-error = (char *)malloc(sizeof(char) * size);
-if (!error)
-{
-free(ver_str);
-return (NULL);
-}
-
-error = strcat_cd(datash, msg, error, ver_str);
-
-free(ver_str);
-
-return (error);
+	_eputs(info->fname);
+	_eputs(": ");
+	print_d(info->line_count, STDERR_FILENO);
+	_eputs(": ");
+	_eputs(info->argv[0]);
+	_eputs(": ");
+	_eputs(estr);
 }
 
 /**
-* error_not_found - generic error message for command not found
-* @datash: data relevant (counter, arguments)
-* Return: Error message
-*/
+ * print_d - prints a decimal integer to a file descriptor
+ * @input: the integer to be printed
+ * @fd: the file descriptor to write to
+ *
+ * Return: the number of characters printed
+ */
 
-char *error_not_found(data_shell *datash)
+int print_d(int input, int fd)
 {
-char *error, *ver_str;
-int size;
+	int (*__putchar)(char) = _putchar;
+	int i, count = 0;
+	unsigned int _abs_, current;
 
-ver_str = aux_itoa(datash->counter);
+	if (fd == STDERR_FILENO)
+		__putchar = _eputchar;
+	if (input < 0)
+	{
+		_abs_ = -input;
+		__putchar('-');
+		count++;
+	}
+	else
+		_abs_ = input;
+	current = _abs_;
+	for (i = 1000000000; i > 1; i /= 10)
+	{
+		if (_abs_ / i)
+		{
+			__putchar('0' + current / i);
+			count++;
+		}
+		current %= i;
+	}
+	__putchar('0' + current);
+	count++;
 
-size = strlen(datash->av[0]) + strlen(ver_str) + strlen(datash->args[0]) + 16;
-
-error = (char *)malloc(sizeof(char) * size);
-if (!error)
-{
-free(ver_str);
-return (NULL);
-}
-
-snprintf(error, size, "%s: %s: %s: not found\n", datash->av[0], ver_str,
-		datash->args[0]);
-
-free(ver_str);
-return (error);
-}
-
-/**
-* error_exit_shell - generic error message for exit in get_exit
-* @datash: data relevant (counter, arguments)
-*
-* Return: Error message
-*/
-
-char *error_exit_shell(data_shell *datash)
-{
-char *error, *ver_str;
-int size;
-
-ver_str = aux_itoa(datash->counter);
-
-size = strlen(datash->av[0]) + strlen(ver_str) + strlen(datash->args[0])
-	+ strlen(datash->args[1]) + 23;
-
-error = (char *)malloc(sizeof(char) * size);
-
-if (!error)
-{
-free(ver_str);
-return (NULL);
-}
-snprintf(error, size, "%s: %s: %s: numeric argument required\n", datash->av[0],
-		ver_str, datash->args[0]);
-
-free(ver_str);
-return (error);
-
+	return (count);
 }
 
 /**
-* error_many_args - generic error message for command not found
-* @datash: data relevant (counter, arguments)
-* Return: Error message
-*/
+ * convert_number - Converts a long integer to a string in the specified base.
+ * @num: The number to convert.
+ * @base: The base to convert the number to (must be between 2 and 36).
+ * @flags: Flags to modify the output (currently unused).
+ *
+ * Return: A pointer to a string containing the converted number, or NULL
+ *         if an error occurred.
+ */
 
-char *error_many_args(data_shell *datash)
+char *convert_number(long int num, int base, int flags)
 {
-char *error, *ver_str;
-int size;
-ver_str = aux_itoa(datash->counter);
+	static char *array;
+	static char buffer[50];
+	char sign = 0;
+	char *ptr;
+	unsigned long n = num;
 
-size = strlen(datash->av[0]) + strlen(ver_str) + strlen(datash->args[0]) + 23;
+	if (!(flags & CONVERT_UNSIGNED) && num < 0)
+	{
+		n = -num;
+		sign = '-';
 
-error = (char *)malloc(sizeof(char) * size);
-if (!error)
-{
-free(ver_str);
-return (NULL);
+	}
+	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" :
+	       "0123456789ABCDEF";
+	ptr = &buffer[49];
+	*ptr = '\0';
+
+	do	{
+		*--ptr = array[n % base];
+		n /= base;
+	} while (n != 0);
+
+	if (sign)
+		*--ptr = sign;
+	return (ptr);
 }
 
-snprintf(error, size, "%s: %s: too many arguments\n", datash->av[0], ver_str);
+/**
+ * remove_comments - removes comments from a given string
+ *
+ * @buf: pointer to the string to remove comments from
+ *
+ * This function removes all comments from a given string by replacing
+ * any occurrences of the substring "//" with a null character. This
+ * effectively "deletes" any text from the point of the comment until
+ * the end of the string.
+ *
+ * Return: void
+ */
 
-free(ver_str);
-return (error);
+void remove_comments(char *buf)
+{
+	int i;
 
+	for (i = 0; buf[i] != '\0'; i++)
+		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+		{
+			buf[i] = '\0';
+			break;
+		}
 }
