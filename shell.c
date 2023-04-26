@@ -68,7 +68,8 @@ void type_prompt(void)
 static int first_time = 1;
 if (first_time)
 {
-const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
+/*const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";*/
+	const char *CLEAR_SCREEN_ANSI = "\033[1;1H\033[2J";
 write(STDERR_FILENO, CLEAR_SCREEN_ANSI, 12);
 first_time = 0;
 }
@@ -83,9 +84,9 @@ printf("$ ");
 
 int main(void)
 {
-char cmd[100], command[100], *parameters[20];
+/*char cmd[100], command[100], *parameters[20];*/
 
-char *envp[] = { (char *) "PATH=C:\\Windows\\System32", NULL };
+/*char *envp[] = { (char *) "PATH=C:\\Windows\\System32", NULL };*/
 while (1)
 {
 type_prompt();
