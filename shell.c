@@ -84,9 +84,11 @@ printf("$ ");
 
 int main(void)
 {
-/*char cmd[100], command[100], *parameters[20];*/
-
+/*char cmd[100];*/
+char command[100];
+char *parameters[20];
 /*char *envp[] = { (char *) "PATH=C:\\Windows\\System32", NULL };*/
+
 while (1)
 {
 type_prompt();
