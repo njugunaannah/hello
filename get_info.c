@@ -57,6 +57,7 @@ void set_info(info_t *info, char **av)
  */
 void free_info(info_t *info, int all)
 {
+	int i;
 	ffree(info->argv);
 	info->argv = NULL;
 	info->path = NULL;
@@ -75,7 +76,7 @@ void free_info(info_t *info, int all)
 	ffree(info->environ);
 	info->environ = NULL;
 
-	for (int i = 0; info->cmd_buf[i]; i++)
+	for (i = 0; info->cmd_buf[i]; i++)
 	bfree((void **)(&info->cmd_buf[i]));
 	bfree((void **)info->cmd_buf);
 

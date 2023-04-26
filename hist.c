@@ -121,12 +121,13 @@ int read_history(info_t *info)
 int build_history_list(info_t *info, char *buf, int linecount)
 {
 	list_t *node = NULL;
+	size_t i;
 
 	if (info->history)
 	node = info->history;
 
 	/* Add each character in `buf` to a new node in the history list */
-	for (size_t i = 0; i < strlen(buf); i++)
+	for (i = 0; i < strlen(buf); i++)
 	{
 	add_node_end(&node, &buf[i], linecount);
 	}

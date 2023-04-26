@@ -107,11 +107,11 @@ ssize_t get_input(info_t *info)
 ssize_t read_buf(info_t *info, char *buf, size_t *i)
 {
 	ssize_t r = 0;
-
+	size_t j = 0;
 	if (*i)
 	return (0);
 
-	for (size_t j = 0; j < READ_BUF_SIZE; j++)
+	for (j = 0; j < READ_BUF_SIZE; j++)
 	{
 	r = read(info->readfd, buf + j, 1);
 	if (r < 0)

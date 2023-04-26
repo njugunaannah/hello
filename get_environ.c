@@ -12,32 +12,38 @@
 
 char **get_environ(info_t *info)
 {
+	size_t count = 0;
+	char **new_environ;
+	size_t i = 0;
+	size_t j = 0;
+
 	if (!info->environ || info->env_changed) {
 	info->environ = list_to_strings(info->env);
 	info->env_changed = 0;
 	}
 
 	/* Count the number of elements in the environ array */
-	size_t count = 0;
+	/*size_t count = 0;*/
 	while (info->environ[count])
 	{
 	count++;
 	}
 
 	/* Allocate memory for a new array of strings */
-	char **new_environ = malloc(sizeof(char *) * (count + 1));
+	/*char **new_environ;*/
+	new_environ = malloc(sizeof(char *) * (count + 1));
 	if (!new_environ)
 	{
 	return (NULL);
 	}
 
 	/* Copy each string from the old environ array to the new one */
-	for (size_t i = 0; i <= count; i++)
+	for (i = 0; i <= 0; i++)
 	{
 	new_environ[i] = strdup(info->environ[i]);
 	if (!new_environ[i]) {
 	/* Free the memory allocated for the new array and return NULL */
-	for (size_t j = 0; j < i; j++)
+	for (j = 0; j < i; j++)
 	{
 	free(new_environ[j]);
 	}
