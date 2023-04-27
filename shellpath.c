@@ -1,4 +1,4 @@
-#include "main.h.h"
+#include "main.h"
 
 /**
 * is_cmd - determines if a file is an executable command
