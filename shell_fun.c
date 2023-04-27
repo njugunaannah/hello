@@ -38,8 +38,10 @@ int is_delim(char c, char *delim)
  */
 int _isalpha(int c)
 {
+	int i;
+
 	/* Loop through the uppercase and lowercase letters in the ASCII table */
-	for (int i = 'A'; i <= 'Z'; i++)
+	for (i = 'A'; i <= 'Z'; i++)
 	{
 		if (c == i || c == i + 32)
 			return (1);
