@@ -237,11 +237,6 @@ int replace_alias(info_t *info);
 int replace_vars(info_t *info);
 int replace_string(char **old, char *new);
 
-/* shell_array.c*/
-char **createArray(char *string, char endOfListEntryChar, char **ifSemiColonPointer);
-char **duplicateArray(char **previousArray, int createdArraySize);
-int releaseArray(char **arguements);
-char *findArrayElement(char **array, char *itemName);
 
 
 #endif
